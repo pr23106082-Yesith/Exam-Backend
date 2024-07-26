@@ -29,4 +29,10 @@ public class CustomerController {
     void upadateCustomer(@RequestBody Customer customer){
         customerService.upadateCustomer(customer);
     }
+
+    @DeleteMapping("/delete-Customer/{id}")
+    boolean deleteCustomer(@PathVariable Integer id){
+        return customerService.deleteCustomer(id);
+    }
+
 }

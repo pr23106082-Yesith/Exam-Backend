@@ -42,4 +42,14 @@ public class CustomerServiceImpl implements CustomerService {
             customerRepositary.save(customerEntity);
         }
     }
+
+    @Override
+    public boolean deleteCustomer(Integer id) {
+        if(customerRepositary.existsById(id)){
+            customerRepositary.deleteById(id);
+            return true;
+        }
+
+        return false;
+    }
 }
