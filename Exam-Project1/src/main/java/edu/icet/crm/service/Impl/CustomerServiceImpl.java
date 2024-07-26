@@ -8,9 +8,12 @@ import edu.icet.crm.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
-public class CustomerImpl implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
 
     private  final CustomerRepositary customerRepositary;
     private final ObjectMapper mapper;
@@ -18,5 +21,17 @@ public class CustomerImpl implements CustomerService {
     public void addCustomer(Customer customer) {
         CustomerEntity customerEntity = mapper.convertValue(customer, CustomerEntity.class);
         customerRepositary.save(customerEntity);
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        List <Customer> customerList= new ArrayList();
+        Iterable<CustomerEntity> all = customerRepositary.findAll();
+
+        all.forEach(customerEntity -> {
+            Customer customer = mapper.convertValue(customerEntity, Customer.class);
+            customerList.add(customer);
+        });
+        return customerList;
     }
 }

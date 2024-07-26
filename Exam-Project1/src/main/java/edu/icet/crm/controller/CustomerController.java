@@ -5,6 +5,8 @@ import edu.icet.crm.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/customer")
@@ -16,5 +18,10 @@ public class CustomerController {
     @PostMapping("/add-customer")
     void addCustomer(@RequestBody Customer customer){
         customerService.addCustomer(customer);
+    }
+
+    @GetMapping("/get-All")
+    List<Customer> getAllCustomer(){
+        return  customerService.getAllCustomer();
     }
 }
