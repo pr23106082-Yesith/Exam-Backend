@@ -12,4 +12,6 @@ public interface CustomerService {
     void upadateCustomer(Customer customer);
 
     boolean deleteCustomer(Integer id);
+
+    Customer getCustomerById(Integer id);
 }

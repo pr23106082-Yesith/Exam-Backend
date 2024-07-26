@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -51,5 +52,14 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         return false;
+    }
+
+    @Override
+    public Customer getCustomerById(Integer id) {
+        if(customerRepositary.existsById(id)){
+            Optional<CustomerEntity> byId = customerRepositary.findById(id);
+            return mapper.convertValue(byId, Customer.class);
+        }
+        return null;
     }
 }
