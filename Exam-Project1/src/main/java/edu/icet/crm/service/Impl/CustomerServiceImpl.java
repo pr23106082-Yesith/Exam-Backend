@@ -34,4 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
         });
         return customerList;
     }
+
+    @Override
+    public void upadateCustomer(Customer customer) {
+        if (customerRepositary.existsById(customer.getId())){
+            CustomerEntity customerEntity = mapper.convertValue(customer, CustomerEntity.class);
+            customerRepositary.save(customerEntity);
+        }
+    }
 }

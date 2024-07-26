@@ -24,4 +24,9 @@ public class CustomerController {
     List<Customer> getAllCustomer(){
         return  customerService.getAllCustomer();
     }
+
+    @PutMapping("/update-Customer")
+    void upadateCustomer(@RequestBody Customer customer){
+        customerService.upadateCustomer(customer);
+    }
 }
